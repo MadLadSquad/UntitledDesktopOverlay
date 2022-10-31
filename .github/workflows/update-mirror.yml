@@ -32,7 +32,7 @@ jobs:
           git remote add mirror https://code.funtoo.org/bitbucket/scm/~madman10k/untitled-desktop-overlay.git
           git fetch --all
           git push mirror master
-      - uses: zent-contrib/git-branch-sync-action@v1
+      - uses: zent-contrib/sync-git-branch@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
