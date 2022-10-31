@@ -1,5 +1,7 @@
 name: Update mirror
-on: push
+on: 
+  push:
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,11 +25,16 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
       - name: Update submodules
-        id: mod
         run: |
           git config --global user.name "Madman10K"
           git config --global user.email "contact@madladsquad.com"
           git fetch --all
-          git remote add upstream https://code.funtoo.org/bitbucket/scm/~madman10k/untitled-desktop-overlay.git
+          git remote add mirror https://code.funtoo.org/bitbucket/scm/~madman10k/untitled-desktop-overlay.git
           git fetch --all
-          git push upstream master
+          git push mirror master
+      - uses: zent-contrib/git-branch-sync-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        with:
+          source-branch: master
+          destination-repo: "git@code.funtoo.org:7999/~madman10k/untitled-desktop-overlay.git"
