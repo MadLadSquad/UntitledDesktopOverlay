@@ -1,8 +1,8 @@
 # UntitledDesktopOverlay
 An overlay containing Gentoo/Funtoo ebuilds and autogens for the applications and libraries part of the UntitledDesktop project
 
-## Contributing
-Issues can be submitted to github [here](https://github.com/MadLadSquad/UntitledDesktopOverlay), you can also start discussions
-there
+## Installation
+You can install this via layman: `root # layman -o https://raw.githubusercontent.com/MadLadSquad/UntitledDesktopOverlay/master/repositories.xml -f -a untitled-desktop-overlay`
 
-PRs can be submitted to github [here](https://github.com/MadLadSquad/UntitledDesktopOverlay)
+## Contributing
+Issues, PRs, discussions and documentation can all be found on github [here](https://github.com/MadLadSquad/UntitledDesktopOverlay)
