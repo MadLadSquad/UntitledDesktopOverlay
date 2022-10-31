@@ -1,0 +1,11 @@
+<repositories encoding="unicode" version="1.1">
+  <repo priority="10" quality="experimental">
+    <name>untitled-destkop-overlay</name>
+    <description>An overlay containing Gentoo/Funtoo ebuilds and autogens for the applications and libraries part of the UntitledDesktop project </description>
+    <owner>
+      <email>contact@madladsquad.com</email>
+      <name>MadLadSquad</name>
+    </owner>
+    <source type="git">https://github.com/MadLadSquad/UntitledDesktopOverlay.git</source>
+  </repo>
+</repositories>
