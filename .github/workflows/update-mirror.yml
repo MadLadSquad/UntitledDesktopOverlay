@@ -36,4 +36,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
           source-branch: master
-          destination-repo: "git@code.funtoo.org:7999/~madman10k/untitled-desktop-overlay.git"
+          destination-repo: "ssh://git@code.funtoo.org:7999/~madman10k/untitled-desktop-overlay.git"
