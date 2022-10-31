@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: master
-          token: ${{ secrets.FUNTOO_BITBUCKET_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           lfs: false
           submodules: true
           clean: false
