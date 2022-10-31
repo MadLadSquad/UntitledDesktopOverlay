@@ -1,0 +1,33 @@
+name: Update mirror
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          token: ${{ secrets.FUNTOO_BITBUCKET_TOKEN }}
+          lfs: false
+          submodules: true
+          clean: false
+          fetch-depth: 0
+      - name: "Import bot's GPG key for signing commits"
+        id: import-gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.ACTION_COMMIT_SING_PRIVATE_KEY }}
+          passphrase: ${{ secrets.ACTION_COMMIT_SING_PASS }}
+          git_config_global: true
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+      - name: Update submodules
+        id: mod
+        run: |
+          git config --global user.name "Madman10K"
+          git config --global user.email "contact@madladsquad.com"
+          git fetch --all
+          git remote add upstream https://code.funtoo.org/bitbucket/scm/~madman10k/untitled-desktop-overlay.git
+          git fetch --all
+          git push upstream master
