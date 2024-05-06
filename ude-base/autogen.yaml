@@ -31,3 +31,15 @@ madladsquad:
           repo: UntitledI18N
           query: releases
           tarball: "untitled-i18n.tar.xz"
+    - untitled-dbus-utils:
+        github:
+          user: MadLadSquad
+          repo: UntitledDBusUtils
+          query: releases
+          tarball: "untitled-dbus-utils.tar.xz"
+    - untitled-imgui-framework:
+        github:
+          user: MadLadSquad
+          repo: UntitledImGuiFramework
+          query: releases
+          tarball: "untitled-imgui-framework.tar.xz"
