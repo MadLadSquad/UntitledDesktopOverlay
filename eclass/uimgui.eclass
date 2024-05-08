@@ -63,10 +63,10 @@ uimgui_src_compile() {
 uimgui_src_install() {
 	cd "${S}"/UVKBuildTool/build || die
 	# Export application for production
-	./UVKBuildTool --build "${ED}"/usr ../../Projects/"${PN}" || die
+	./UVKBuildTool --build "${ED}"/usr /usr ../../Projects/"${PN}" || die
 
 	# Delete uneeded files
-	rm -rf "${ED}"/usr/share/utf8cpp "${ED}"/usr/include/utf8cpp || die
+	rm -rf "${ED}"/usr/share/utf8cpp "${ED}"/usr/include/utf8cpp "${ED}"/share/utf8cpp "${ED}"/include/utf8cpp || die
 }
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install

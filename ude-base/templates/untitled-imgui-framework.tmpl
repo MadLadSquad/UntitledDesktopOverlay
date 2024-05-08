@@ -48,7 +48,7 @@ src_compile() {
 src_install() {
 	cd UVKBuildTool/build || die
 	# Export application for production
-	./UVKBuildTool --build "${ED}"/usr ../../Projects/ebuild || die
+	./UVKBuildTool --build "${ED}"/usr /usr ../../Projects/ebuild || die
 
 	# Delete uneeded files
 	rm "${ED}"/usr/lib64/libebuildLib.so "${ED}"/usr/bin/ebuild || die

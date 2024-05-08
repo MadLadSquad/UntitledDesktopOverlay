@@ -4,7 +4,7 @@ EAPI="7"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.8.10/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.8.12/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -48,7 +48,7 @@ src_compile() {
 src_install() {
 	cd UVKBuildTool/build || die
 	# Export application for production
-	./UVKBuildTool --build "${ED}"/usr ../../Projects/ebuild || die
+	./UVKBuildTool --build "${ED}"/usr /usr ../../Projects/ebuild || die
 
 	# Delete uneeded files
 	rm "${ED}"/usr/lib64/libebuildLib.so "${ED}"/usr/bin/ebuild || die
