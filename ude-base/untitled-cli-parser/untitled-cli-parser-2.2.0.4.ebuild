@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="unicode"
 RESTRICT=""
 
-BDEPEND=""
+BDEPEND="virtual/pkgconfig"
 DEPEND=""
 RDEPEND="unicode? ( dev-libs/utfcpp )"
 

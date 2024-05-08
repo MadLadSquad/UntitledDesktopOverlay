@@ -14,7 +14,7 @@ KEYWORDS="*"
 IUSE="-create_dirs ignore_relative_dirs"
 RESTRICT=""
 
-BDEPEND=""
+BDEPEND="virtual/pkgconfig"
 DEPEND=""
 RDEPEND=""
 

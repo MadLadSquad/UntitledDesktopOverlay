@@ -16,20 +16,21 @@ case ${EAPI} in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-# @ECLASS_VARIABLE: UIMGUI_PROJECT_ARCHIVE_NAME
-# @PRE_INHERIT
-# @DEFAULT_UNSET
-# @DESCRIPTION: specify the name of the project archive
-: "${UIMGUI_PROJECT_ARCHIVE_NAME}"
-
-RDEPEND+="untitled-imgui-framework"
-S="${WORKDIR}"
+RDEPEND+="ude-base/untitled-imgui-framework"
+S="${WORKDIR}/UFW"
 
 # @FUNCTION: uimgui_src_unpack
 # @DESCRIPTION: Unpacks the framework
 uimgui_src_unpack() {
 	# Unpack framework
 	unpack untitled-imgui-framework.tar.xz
+	mkdir "${WORKDIR}"/UFW || die
+	ls "${WORKDIR}" | grep -v "UFW" | xargs -i mv {} "${WORKDIR}"/UFW || die
+
+	# Unpack project
+	unpack "${PN}".tar.xz
+	mkdir "${WORKDIR}"/"${PN}" || die
+	ls "${WORKDIR}" | grep -v "UFW" | grep -v "${PN}" | xargs -i mv {} "${WORKDIR}"/"${PN}" || die
 }
 
 # @FUNCTION: uimgui_src_compile
@@ -38,21 +39,29 @@ uimgui_src_compile() {
 	# Compile build tool
 	./install.sh ci || die
 
-	# TODO: Unpack project archive here
-	(cd Projects/ && mkdir "${PN}" && cd "${PN}" && unpack "${UIMGUI_PROJECT_ARCHIVE_NAME}" && cd ../../) || die
+	# Move the project in place
+	mv "${WORKDIR}"/"${PN}" "${S}"/Projects/ || die
 
-	cd UVKBuildTool/build || die
-	./UVKBuildTool --generate ../../Projects/"${PN}" || exit
+	# Create required links and directories
+	mkdir "${S}"/Projects/"${PN}"/Generated || die
+	ln -rs "${S}"/Framework "${S}"/Projects/"${PN}"/Framework || die
+	ln -rs "${S}"/Framework "${S}"/Projects/"${PN}"/UVKBuildTool || die
+	ln -rs "${S}"/"export.sh" "${S}"/Projects/"${PN}"/"export.sh" || die
+	mkdir "${S}"/Projects/"${PN}"/Exported || die
+
+	cd "${S}"/UVKBuildTool/build || die
+	./UVKBuildTool --generate ../../Projects/"${PN}" || die
 
 	# Configure for production
 	sed -i "s/build-mode-vendor: true/build-mode-vendor: false/g" "${S}"/Projects/"${PN}"/uvproj.yaml
+	sed -i "s/install-framework: true/install-framework: false/g" "${S}"/Projects/"${PN}"/uvproj.yaml
 	echo "system-wide: true" >> "${S}"/Projects/"${PN}"/uvproj.yaml
 }
 
 # @FUNCTION: uimgui_src_install
 # @DESCRIPTION: Build application and install it
 uimgui_src_install() {
-	cd UVKBuildTool/build || die
+	cd "${S}"/UVKBuildTool/build || die
 	# Export application for production
 	./UVKBuildTool --build "${ED}"/usr ../../Projects/"${PN}" || die
 
@@ -60,4 +69,4 @@ uimgui_src_install() {
 	rm -rf "${ED}"/usr/share/utf8cpp "${ED}"/usr/include/utf8cpp || die
 }
 
-EXPORT_FUNCTIONS uimgui_src_unpack uimgui_src_compile uimgui_src_install
+EXPORT_FUNCTIONS src_unpack src_compile src_install

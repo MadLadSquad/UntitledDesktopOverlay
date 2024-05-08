@@ -12,7 +12,7 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND=""
+BDEPEND="virtual/pkgconfig"
 DEPEND=""
 RDEPEND="dev-cpp/yaml-cpp
 	dev-libs/utfcpp
@@ -37,7 +37,7 @@ src_compile() {
 	./install.sh ci || die
 
 	# Generate and compile example project
-	./create-project.sh ebuild || die
+	./create-project.sh ebuild --skip-compilation || die
 
 	# Configure for production
 	sed -i "s/build-mode-vendor: true/build-mode-vendor: false/g" "${S}"/Projects/ebuild/uvproj.yaml

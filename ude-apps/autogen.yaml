@@ -1,0 +1,24 @@
+ude_apps_rule:
+  generator: ude-github
+  packages:
+    - untitled-ibus-handwriting:
+        user: MadLadSquad
+        repo: UntitledIBusHandwriting
+        tarball: "untitled-ibus-handwriting.tar.xz"
+    - untitled-game-system-manager:
+        user: MadLadSquad
+        repo: UntitledGameSystemManager
+        tarball: "untitled-game-system-manager.tar.xz"
+    - ude-welcome:
+        user: MadLadSquad
+        repo: UntitledDEWelcome
+        tarball: "ude-welcome.tar.xz"
+    - ude-session-logout:
+        user: MadLadSquad
+        repo: UntitledDESessionLogout
+        tarball: "ude-session-logout.tar.xz"
+    - udf-panel:
+        user: MadLadSquad
+        repo: UDFPanel
+        tarball: "udf-panel.tar.xz"
+

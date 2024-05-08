@@ -4,7 +4,7 @@ EAPI="7"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.8.4/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.8.10/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -12,7 +12,7 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND=""
+BDEPEND="virtual/pkgconfig"
 DEPEND=""
 RDEPEND="dev-cpp/yaml-cpp
 	dev-libs/utfcpp
@@ -37,7 +37,7 @@ src_compile() {
 	./install.sh ci || die
 
 	# Generate and compile example project
-	./create-project.sh ebuild || die
+	./create-project.sh ebuild --skip-compilation || die
 
 	# Configure for production
 	sed -i "s/build-mode-vendor: true/build-mode-vendor: false/g" "${S}"/Projects/ebuild/uvproj.yaml
