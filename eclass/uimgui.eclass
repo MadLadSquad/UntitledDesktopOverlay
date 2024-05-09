@@ -36,6 +36,7 @@ uimgui_src_unpack() {
 # @FUNCTION: uimgui_src_compile
 # @DESCRIPTION: Compile build tool and generate project
 uimgui_src_compile() {
+	cd "${S}" || die
 	# Compile build tool
 	./install.sh ci || die
 

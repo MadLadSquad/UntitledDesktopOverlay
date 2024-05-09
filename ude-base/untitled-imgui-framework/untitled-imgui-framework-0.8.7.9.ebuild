@@ -4,7 +4,7 @@ EAPI="7"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.8.12/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.9/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -23,7 +23,7 @@ RDEPEND="dev-cpp/yaml-cpp
 	media-libs/glew
 	media-libs/freetype
 	media-libs/fontconfig
-	sys-apps/dbus
+	ude-base/untitled-dbus-utils
 	ude-base/untitled-cli-parser
 	ude-base/untitled-exec
 	ude-base/untitled-i18n

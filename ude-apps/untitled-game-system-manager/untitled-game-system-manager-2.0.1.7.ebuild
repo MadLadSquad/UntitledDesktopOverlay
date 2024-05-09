@@ -6,8 +6,8 @@ inherit uimgui go-module
 
 DESCRIPTION="A manager for containerised Linux gaming systems based on Incus"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledGameSystemManager"
-SRC_URI="{{ artifacts[0].src_uri }}
-{{ artifacts[1].src_uri }}"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.8.7.9/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz
+https://github.com/MadLadSquad/UntitledGameSystemManager/releases/download/v2.0.1.7/untitled-game-system-manager.tar.xz -> untitled-game-system-manager.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
