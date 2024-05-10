@@ -12,9 +12,8 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND="virtual/pkgconfig"
-DEPEND=""
-RDEPEND="dev-cpp/yaml-cpp
+BDEPEND="virtual/pkgconfig
+	dev-cpp/yaml-cpp
 	dev-libs/utfcpp
 	dev-util/vulkan-headers
 	media-libs/vulkan-layers
@@ -29,6 +28,8 @@ RDEPEND="dev-cpp/yaml-cpp
 	ude-base/untitled-i18n
 	ude-base/untitled-open
 	ude-base/untitled-xdg-basedir"
+DEPEND=""
+RDEPEND="$BDEPEND"
 
 S="${WORKDIR}"
 

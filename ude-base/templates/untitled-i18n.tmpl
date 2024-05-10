@@ -14,7 +14,8 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND="virtual/pkgconfig"
+BDEPEND="virtual/pkgconfig
+	dev-cpp/yaml-cpp"
 DEPEND=""
 RDEPEND="dev-cpp/yaml-cpp"
 

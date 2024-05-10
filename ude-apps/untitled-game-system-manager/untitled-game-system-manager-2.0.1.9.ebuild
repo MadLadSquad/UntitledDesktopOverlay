@@ -15,7 +15,8 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND="dev-lang/go"
+BDEPEND="dev-lang/go
+	app-emulation/incus"
 DEPEND=""
 RDEPEND="app-emulation/incus"
 

@@ -15,6 +15,6 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND=""
+BDEPEND="sys-auth/elogind"
 DEPEND=""
-RDEPEND="sys-auth/elogind"
+RDEPEND="$BDEPEND"

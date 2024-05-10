@@ -14,7 +14,8 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND="virtual/pkgconfig"
+BDEPEND="virtual/pkgconfig
+	sys-apps/dbus"
 DEPEND=""
 RDEPEND="sys-apps/dbus
 	sys-apps/xdg-desktop-portal
