@@ -1,4 +1,4 @@
-# Distributed under the terms of the GNU General Public License v2
+# Distributed under the terms of the MIT License
 
 # @ECLASS: uimgui.eclass
 # @MAINTAINER: contact@madladsquad.com
