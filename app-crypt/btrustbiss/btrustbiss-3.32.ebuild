@@ -26,19 +26,25 @@ src_unpack() {
 }
 
 src_install() {
-	default
+	cp -r "${S}"/opt "${ED}"
 
+	fperms +x /opt/btrustbiss/bin/BISS
+	for f in "${S}"/opt/btrustbiss/lib/runtime/lib/*.so; do
+		local name=$(basename "${f}")
+		fperms 775 /opt/btrustbiss/lib/runtime/lib/"${name}"
+	done
+	fperms 775 /opt/btrustbiss/lib/runtime/lib/jexec
+	fperms 775 /opt/btrustbiss/lib/runtime/lib/jspawnhelper
+	
 	doicon opt/btrustbiss/lib/BISS.png
 	domenu opt/btrustbiss/lib/btrustbiss-BISS.desktop
 
 	insinto /opt/btrustbiss
-	doins -r opt/btrustbiss/.
+	doins -r /opt/btrustbiss/.
 
-	fperms +x ${ED}/opt/btrustbiss/bin/BISS
-	fperms 775 ${ED}/opt/btrustbiss/lib/runtime/lib/*.so
-	fperms 775 ${ED}/opt/btrustbiss/lib/runtime/lib/jexec
-	fperms 775 ${ED}/opt/btrustbiss/lib/runtime/lib/jspawnhelper
-	dosym ${ED}/opt/btrustbiss/bin/BISS usr/bin/BISS
+	dosym /opt/btrustbiss/bin/BISS usr/bin/BISS
+
+
 }
 
 pkg_postinst() {
