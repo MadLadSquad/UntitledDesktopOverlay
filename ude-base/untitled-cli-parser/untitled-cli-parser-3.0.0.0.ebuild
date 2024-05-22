@@ -6,17 +6,17 @@ inherit cmake
 
 DESCRIPTION="C/C++ parser for CLI arguments"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledCLIParser"
-SRC_URI="https://github.com/MadLadSquad/UntitledCLIParser/releases/download/v2.2.0.4/untitled-cli-parser.tar.xz -> untitled-cli-parser.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledCLIParser/releases/download/v3.0.0.0/untitled-cli-parser.tar.xz -> untitled-cli-parser.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="*"
-IUSE="unicode"
+IUSE=""
 RESTRICT=""
 
 BDEPEND="virtual/pkgconfig"
 DEPEND=""
-RDEPEND="unicode? ( dev-libs/utfcpp )"
+RDEPEND=""
 
 S="${WORKDIR}"
 
@@ -24,7 +24,6 @@ src_configure() {
 	local mycmakeargs=(
 		-DUIMGUI_INSTALL=ON
 		-DBUILD_VARIANT_VENDOR=OFF
-		-DWITH_UTF8=$(usex unicode)
 	)
 
 	cmake_src_configure

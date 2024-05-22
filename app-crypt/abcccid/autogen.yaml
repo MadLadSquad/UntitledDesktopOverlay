@@ -1,0 +1,9 @@
+abcccid:
+  generator: github-1
+  packages:
+    - abcccid:
+        github:
+          user: invakid404
+          repo: abcccid
+          query: releases
+          tarball: "Circle_Linux_Mac_Driver_v{version}.zip"

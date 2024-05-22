@@ -1,0 +1,19 @@
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+DESCRIPTION="AB Circle CCID card reader driver"
+HOMEPAGE="https://www.abcircle.com/en/"
+SRC_URI="{{ artifacts[0].src_uri }}"
+
+LICENSE="LGPL-2"
+KEYWORDS="*"
+
+DEPEND="virtual/linux-sources"
+BDEPEND="sys-apps/pcsc-lite
+	virtual/pkgconfig"
+
+src_unpack() {
+	unpack ${A}
+	die
+}
