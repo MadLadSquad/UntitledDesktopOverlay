@@ -23,7 +23,6 @@ S="${WORKDIR}"
 src_configure() {
 	local mycmakeargs=(
 		-DUIMGUI_INSTALL=ON
-		-DBUILD_VARIANT_VENDOR=OFF
 	)
 
 	cmake_src_configure
