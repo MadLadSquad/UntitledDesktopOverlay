@@ -6,7 +6,7 @@ inherit cmake
 
 DESCRIPTION="Cross-platform C/C++ library for opening links and file pickers natively"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledExec"
-SRC_URI="https://github.com/MadLadSquad/UntitledOpen/releases/download/v2.0.0.0/untitled-open.tar.xz -> untitled-open.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledOpen/releases/download/v2.1.0.0/untitled-open.tar.xz -> untitled-open.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"

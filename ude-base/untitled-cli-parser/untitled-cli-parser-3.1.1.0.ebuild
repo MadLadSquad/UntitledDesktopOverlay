@@ -4,9 +4,9 @@ EAPI="7"
 
 inherit cmake
 
-DESCRIPTION="Cross-platform library for executing applications as a separate process"
-HOMEPAGE="https://github.com/MadLadSquad/UntitledExec"
-SRC_URI="https://github.com/MadLadSquad/UntitledExec/releases/download/v3.3.0.4/untitled-exec.tar.xz -> untitled-exec.tar.xz"
+DESCRIPTION="C/C++ parser for CLI arguments"
+HOMEPAGE="https://github.com/MadLadSquad/UntitledCLIParser"
+SRC_URI="https://github.com/MadLadSquad/UntitledCLIParser/releases/download/v3.1.1.0/untitled-cli-parser.tar.xz -> untitled-cli-parser.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
