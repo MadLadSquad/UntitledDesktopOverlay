@@ -6,7 +6,7 @@ inherit cmake
 
 DESCRIPTION="Next generation C/C++ i18n library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledI18N"
-SRC_URI="https://github.com/MadLadSquad/UntitledI18N/releases/download/v1.3.1.0/untitled-i18n.tar.xz -> untitled-i18n.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledI18N/releases/download/v1.3.1.1/untitled-i18n.tar.xz -> untitled-i18n.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"

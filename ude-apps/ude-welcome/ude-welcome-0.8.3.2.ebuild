@@ -6,8 +6,8 @@ inherit uimgui
 
 DESCRIPTION="A welcome and info application for the UntitledDesktopEnvironment"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledDEWelcome"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.3.0/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz
-https://github.com/MadLadSquad/UntitledDEWelcome/releases/download/v0.8.3.1/ude-welcome.tar.xz -> ude-welcome.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.4.0/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz
+https://github.com/MadLadSquad/UntitledDEWelcome/releases/download/v0.8.3.2/ude-welcome.tar.xz -> ude-welcome.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
