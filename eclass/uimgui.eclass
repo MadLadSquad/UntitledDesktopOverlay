@@ -44,10 +44,6 @@ uimgui_src_compile() {
 	mv "${WORKDIR}"/"${PN}" "${S}"/Projects/ || die
 
 	# Create required links and directories
-	mkdir "${S}"/Projects/"${PN}"/Generated || die
-	ln -rs "${S}"/Framework "${S}"/Projects/"${PN}"/Framework || die
-	ln -rs "${S}"/Framework "${S}"/Projects/"${PN}"/UVKBuildTool || die
-	ln -rs "${S}"/"export.sh" "${S}"/Projects/"${PN}"/"export.sh" || die
 	mkdir "${S}"/Projects/"${PN}"/Exported || die
 
 	cd "${S}"/UVKBuildTool/build || die
