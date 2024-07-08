@@ -10,8 +10,8 @@ ECARGO_VENDOR="${S}/hanzi_lookup/vendor"
 
 DESCRIPTION="A handwriting recognition input method plugin for ibus"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledIBusHandwriting"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.4.6/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz
-https://github.com/MadLadSquad/UntitledIBusHandwriting/releases/download/v1.2.0.0/untitled-ibus-handwriting.tar.xz -> untitled-ibus-handwriting.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.5.0/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz
+https://github.com/MadLadSquad/UntitledIBusHandwriting/releases/download/v1.2.1.0/untitled-ibus-handwriting.tar.xz -> untitled-ibus-handwriting.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
