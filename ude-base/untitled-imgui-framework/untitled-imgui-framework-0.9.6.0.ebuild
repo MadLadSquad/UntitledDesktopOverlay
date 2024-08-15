@@ -4,7 +4,7 @@ EAPI="7"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.5.0/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.6.0/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
