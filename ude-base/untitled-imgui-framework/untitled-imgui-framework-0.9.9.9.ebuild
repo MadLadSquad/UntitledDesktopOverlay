@@ -4,7 +4,7 @@ EAPI="7"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
-SRC_URI="{{ artifacts[0].src_uri }}"
+SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.9.9/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -33,6 +33,7 @@ RDEPEND="$BDEPEND"
 S="${WORKDIR}"
 
 src_compile() {
+	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/UVKBuildTool/Templates/UntitledImGuiFramework/BuildFiles/CMakeInstall.tmpl || die
 	# Compile build tool
 	./install.sh ci || die
 
@@ -53,4 +54,12 @@ src_install() {
 	# Delete uneeded files
 	rm "${ED}"/usr/lib64/libebuildLib.so "${ED}"/usr/bin/ebuild || die
 	rm -rf "${ED}"/usr/share/utf8cpp "${ED}"/usr/include/utf8cpp "${ED}"/usr/etc/ebuild/ "${ED}"/usr/share/config/ebuild/ "${ED}"/usr/include/ebuild || die
+
+	cd ../ || die
+	rm -rf build && mkdir build && cd build
+	cmake .. -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DUBT_INSTALL=ON -DCMAKE_INSTALL_PREFIX="/usr/" -DUBT_FRAMEWORK_DIR="/usr/include/UntitledImGuiFramework/" -DUBT_DATA_INSTALL_PREFIX="/usr/share" || die
+	make -j "$(grep -c processor /proc/cpuinfo)" || die
+	cmake --install . --prefix="${ED}/usr/" || die
+
+	rm -rf "${ED}/usr/etc/" || die
 }

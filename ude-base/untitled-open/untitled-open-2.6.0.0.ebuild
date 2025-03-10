@@ -5,8 +5,8 @@ EAPI="7"
 inherit cmake
 
 DESCRIPTION="Cross-platform C/C++ library for opening links and file pickers natively"
-HOMEPAGE="https://github.com/MadLadSquad/UntitledOpen"
-SRC_URI="{{ artifacts[0].src_uri }}"
+HOMEPAGE="https://github.com/MadLadSquad/UntitledExec"
+SRC_URI="https://github.com/MadLadSquad/UntitledOpen/releases/download/v2.6.0.0/untitled-open.tar.xz -> untitled-open.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -24,6 +24,7 @@ RDEPEND="sys-apps/dbus
 S="${WORKDIR}"
 
 src_configure() {
+	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/CMakeLists.txt
 	local mycmakeargs=(
 		-DUIMGUI_INSTALL=ON
 		-DBUILD_SHARED_LIBS=OFF
@@ -31,4 +32,3 @@ src_configure() {
 
 	cmake_src_configure
 }
-

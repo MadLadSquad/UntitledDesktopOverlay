@@ -6,7 +6,7 @@ inherit cmake
 
 DESCRIPTION="Modern, light, type and memory safe C++ wrapper on top of the dbus-1 library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledDBusUtils"
-SRC_URI="https://github.com/MadLadSquad/UntitledDBusUtils/releases/download/v1.0.0.0/untitled-dbus-utils.tar.xz -> untitled-dbus-utils.tar.xz"
+SRC_URI="https://github.com/MadLadSquad/UntitledDBusUtils/releases/download/v1.4.0.0/untitled-dbus-utils.tar.xz -> untitled-dbus-utils.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -22,6 +22,8 @@ RDEPEND="sys-apps/dbus"
 S="${WORKDIR}"
 
 src_configure() {
+	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/CMakeLists.txt
+
 	local mycmakeargs=(
 		-DUIMGUI_INSTALL=ON
 	)
