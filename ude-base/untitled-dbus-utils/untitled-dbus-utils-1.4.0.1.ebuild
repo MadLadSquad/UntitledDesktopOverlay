@@ -4,9 +4,9 @@ EAPI="7"
 
 inherit cmake
 
-DESCRIPTION="Next generation C/C++ i18n library"
-HOMEPAGE="https://github.com/MadLadSquad/UntitledI18N"
-SRC_URI="https://github.com/MadLadSquad/UntitledI18N/releases/download/v1.5.0.0/untitled-i18n.tar.xz -> untitled-i18n.tar.xz"
+DESCRIPTION="Modern, light, type and memory safe C++ wrapper on top of the dbus-1 library"
+HOMEPAGE="https://github.com/MadLadSquad/UntitledDBusUtils"
+SRC_URI="$HOMEPAGE/releases/download/v${PV}/${P}.tar.xz -> ${P}.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -15,14 +15,13 @@ IUSE=""
 RESTRICT=""
 
 BDEPEND="virtual/pkgconfig
-	dev-cpp/yaml-cpp"
+	sys-apps/dbus"
 DEPEND=""
-RDEPEND="dev-cpp/yaml-cpp"
-
-S="${WORKDIR}"
+RDEPEND="sys-apps/dbus"
 
 src_configure() {
 	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/CMakeLists.txt
+
 	local mycmakeargs=(
 		-DUIMGUI_INSTALL=ON
 	)

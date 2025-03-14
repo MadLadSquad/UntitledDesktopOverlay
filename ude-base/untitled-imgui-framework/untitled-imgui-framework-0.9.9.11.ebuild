@@ -4,7 +4,7 @@ EAPI="7"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
-SRC_URI="https://github.com/MadLadSquad/UntitledImGuiFramework/releases/download/v0.9.9.9/untitled-imgui-framework.tar.xz -> untitled-imgui-framework.tar.xz"
+SRC_URI="$HOMEPAGE/releases/download/v${PV}/${P}.tar.xz -> ${P}.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -29,8 +29,6 @@ BDEPEND="virtual/pkgconfig
 	ude-base/untitled-xdg-basedir"
 DEPEND=""
 RDEPEND="$BDEPEND"
-
-S="${WORKDIR}"
 
 src_compile() {
 	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/UVKBuildTool/Templates/UntitledImGuiFramework/BuildFiles/CMakeInstall.tmpl || die

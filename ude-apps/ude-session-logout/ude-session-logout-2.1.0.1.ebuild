@@ -6,7 +6,7 @@ inherit uimgui
 
 DESCRIPTION="A log out prompt for the UntitledDesktopEnvironment"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledDESessionLogout"
-SRC_URI="https://github.com/MadLadSquad/UntitledDESessionLogout/releases/download/v2.1.0.0/ude-session-logout.tar.xz -> ude-session-logout.tar.xz"
+SRC_URI="$HOMEPAGE/releases/download/v$PV/$P.tar.xz -> $P.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"

@@ -6,7 +6,7 @@ inherit cmake
 
 DESCRIPTION="C/C++ implementation of the XDG Basedir specification"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledXDGBasedir"
-SRC_URI="https://github.com/MadLadSquad/UntitledXDGBasedir/releases/download/v5.0.0.0/untitled-xdg-basedir.tar.xz -> untitled-xdg-basedir.tar.xz"
+SRC_URI="$HOMEPAGE/releases/download/v${PV}/${P}.tar.xz -> ${P}.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -17,8 +17,6 @@ RESTRICT=""
 BDEPEND="virtual/pkgconfig"
 DEPEND=""
 RDEPEND=""
-
-S="${WORKDIR}"
 
 src_configure() {
 	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/CMakeLists.txt

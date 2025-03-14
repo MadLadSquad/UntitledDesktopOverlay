@@ -6,7 +6,7 @@ inherit uimgui go-module
 
 DESCRIPTION="A manager for containerised Linux gaming systems based on Incus"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledGameSystemManager"
-SRC_URI="https://github.com/MadLadSquad/UntitledGameSystemManager/releases/download/v2.7.0.0/untitled-game-system-manager.tar.xz -> untitled-game-system-manager.tar.xz"
+SRC_URI="$HOMEPAGE/releases/download/v$PV/$P.tar.xz -> $P.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -24,8 +24,8 @@ src_unpack() {
 }
 
 src_compile() {
-	cd "${S}"/IncusBindings/ || die
+	cd IncusBindings/ || die
 	go build -mod=vendor -o libUGM_Incus_InternalFuncs.so -buildmode=c-shared . || die
-	cd "${S}" || die
+	cd .. || die
 	uimgui_src_compile
 }

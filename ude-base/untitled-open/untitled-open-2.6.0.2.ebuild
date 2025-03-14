@@ -4,9 +4,9 @@ EAPI="7"
 
 inherit cmake
 
-DESCRIPTION="Modern, light, type and memory safe C++ wrapper on top of the dbus-1 library"
-HOMEPAGE="https://github.com/MadLadSquad/UntitledDBusUtils"
-SRC_URI="https://github.com/MadLadSquad/UntitledDBusUtils/releases/download/v1.4.0.0/untitled-dbus-utils.tar.xz -> untitled-dbus-utils.tar.xz"
+DESCRIPTION="Cross-platform C/C++ library for opening links and file pickers natively"
+HOMEPAGE="https://github.com/MadLadSquad/UntitledOpen"
+SRC_URI="$HOMEPAGE/releases/download/v${PV}/${P}.tar.xz -> ${P}.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -17,15 +17,15 @@ RESTRICT=""
 BDEPEND="virtual/pkgconfig
 	sys-apps/dbus"
 DEPEND=""
-RDEPEND="sys-apps/dbus"
-
-S="${WORKDIR}"
+RDEPEND="sys-apps/dbus
+	sys-apps/xdg-desktop-portal
+"
 
 src_configure() {
 	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/CMakeLists.txt
-
 	local mycmakeargs=(
 		-DUIMGUI_INSTALL=ON
+		-DBUILD_SHARED_LIBS=OFF
 	)
 
 	cmake_src_configure

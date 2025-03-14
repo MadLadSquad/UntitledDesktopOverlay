@@ -10,7 +10,7 @@ ECARGO_VENDOR="${S}/hanzi_lookup/vendor"
 
 DESCRIPTION="A handwriting recognition input method plugin for ibus"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledIBusHandwriting"
-SRC_URI="https://github.com/MadLadSquad/UntitledIBusHandwriting/releases/download/v1.3.0.0/untitled-ibus-handwriting.tar.xz -> untitled-ibus-handwriting.tar.xz"
+SRC_URI="$HOMEPAGE/releases/download/v$PV/$P.tar.xz -> $P.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -32,9 +32,9 @@ src_configure() {
 }
 
 src_compile() {
-	cd "${S}"/hanzi_lookup || die
+	cd hanzi_lookup || die
 	cargo build --release || die
-	cd "${S}" || die
+	cd ../ || die
 	uimgui_src_compile
 }
 

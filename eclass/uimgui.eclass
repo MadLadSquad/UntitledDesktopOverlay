@@ -19,8 +19,6 @@ esac
 
 RDEPEND+="ude-base/untitled-imgui-framework"
 
-S="${WORKDIR}"
-
 # @FUNCTION: uimgui_src_unpack
 # @DESCRIPTION: Unpacks the framework
 uimgui_src_unpack() {
