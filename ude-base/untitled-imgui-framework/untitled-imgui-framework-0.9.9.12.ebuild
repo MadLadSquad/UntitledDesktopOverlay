@@ -51,13 +51,11 @@ src_install() {
 
 	# Delete uneeded files
 	rm "${ED}"/usr/lib64/libebuildLib.so "${ED}"/usr/bin/ebuild || die
-	rm -rf "${ED}"/usr/share/utf8cpp "${ED}"/usr/include/utf8cpp "${ED}"/usr/etc/ebuild/ "${ED}"/usr/share/config/ebuild/ "${ED}"/usr/include/ebuild || die
+	rm -rf "${ED}"/usr/share/utf8cpp "${ED}"/usr/include/utf8cpp "${ED}"/usr/share/config/ebuild/ "${ED}"/usr/include/ebuild || die
 
 	cd ../ || die
 	rm -rf build && mkdir build && cd build
 	cmake .. -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DUBT_INSTALL=ON -DCMAKE_INSTALL_PREFIX="/usr/" -DUBT_FRAMEWORK_DIR="/usr/include/UntitledImGuiFramework/" -DUBT_DATA_INSTALL_PREFIX="/usr/share" || die
 	make -j "$(grep -c processor /proc/cpuinfo)" || die
 	cmake --install . --prefix="${ED}/usr/" || die
-
-	rm -rf "${ED}/usr/etc/" || die
 }
