@@ -18,8 +18,7 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND="app-i18n/ibus
-	virtual/rust"
+BDEPEND="app-i18n/ibus"
 DEPEND=""
 RDEPEND="app-i18n/ibus"
 
