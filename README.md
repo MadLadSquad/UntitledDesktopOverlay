@@ -7,10 +7,7 @@ An overlay containing Gentoo ebuilds and autogens for the applications and libra
 applications by [MadLadSquad](https://madladsquad.com/).
 
 ## Installation
-You can install this via layman: `root # layman -o https://raw.githubusercontent.com/MadLadSquad/UntitledDesktopOverlay/master/repositories.xml -f -a untitled-desktop-overlay`
-
-## Generating new versions of the packages
-Install [Funtoo Metatools](https://pypi.org/project/funtoo-metatools/), configure it in your environment and run `doit` in the root directory of the project.
+You can install this via eselect: `root # eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git`
 
 ## Contributing
 Issues, PRs, discussions and documentation can all be found on github [here](https://github.com/MadLadSquad/UntitledDesktopOverlay)
