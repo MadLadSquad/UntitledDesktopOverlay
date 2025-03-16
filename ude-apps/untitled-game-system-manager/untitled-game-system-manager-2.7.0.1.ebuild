@@ -15,9 +15,9 @@ IUSE=""
 RESTRICT=""
 
 BDEPEND="dev-lang/go
-	app-emulation/incus"
+	app-containers/incus"
 DEPEND=""
-RDEPEND="app-emulation/incus"
+RDEPEND="app-containers/incus"
 
 src_unpack() {
 	uimgui_src_unpack
