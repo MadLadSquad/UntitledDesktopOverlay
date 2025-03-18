@@ -14,11 +14,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Recreate git repo structure
+      - name: Synchronise repo and install essentials 
         run: |
           emerge --sync
-          emerge git bash
-          
+          emerge git bash flaggie app-eselect/eselect-repository
+      - name: Recreate git repo structure
+        run: |
           git config --global user.name "Madman10K"
           git config --global user.email "contact@madladsquad.com"
           git init
@@ -49,13 +50,10 @@ jobs:
           (git add . && git commit -m Update && git push origin HEAD:master) || echo "Nothing to commit"
       - name: Sync and add repo   
         run: |
-          emerge --sync || exit
-          emerge app-eselect/eselect-repository || exit
           eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git || exit
           emerge --sync untitled-desktop-overlay || exit
       - name: Configure use flags
         run: |
-          emerge flaggie
           flaggie raft +lz4
           flaggie xdelta +lzma
           flaggie squashfs-tools +lzma
