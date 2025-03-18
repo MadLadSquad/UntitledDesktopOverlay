@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: See structure
         run: |
-          ls
+          ls -a 
           pwd
       - name: "Import bot's GPG key for signing commits"
         id: import-gpg
