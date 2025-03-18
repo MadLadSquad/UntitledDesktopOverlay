@@ -17,7 +17,7 @@ jobs:
       - name: Synchronise repo and install essentials 
         run: |
           emerge --sync
-          emerge git bash flaggie app-eselect/eselect-repository
+          emerge dev-vcs/git bash flaggie app-eselect/eselect-repository
       - name: Recreate git repo structure
         run: |
           git config --global user.name "Madman10K"
