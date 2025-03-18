@@ -14,15 +14,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Sync and add overlay
         run: |
-          emerge --sync
-          app-eselect/eselect-repository
-          eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git
-          emerge --sync untitled-desktop-overlay
+          emerge --sync || exit
+          emerge app-eselect/eselect-repository || exit
+          eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git || exit
+          emerge --sync untitled-desktop-overlay || exit
       - name: Configure use flags
         run: |
           emerge flaggie
       - name: Install applications
         run: |
-          emerge untitled-ibus-handwriting untitled-game-system-manager ude-session-logout
+          emerge untitled-ibus-handwriting untitled-game-system-manager ude-session-logout || exit
         
     
