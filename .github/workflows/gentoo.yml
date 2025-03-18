@@ -18,6 +18,13 @@ jobs:
           emerge app-eselect/eselect-repository || exit
           eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git || exit
           emerge --sync untitled-desktop-overlay || exit
+
+          for manifest in find -iname "Manifest"; do
+            man="$(realpath "${manifest}")"
+            cd "$(dirname "${manifest}")"
+            rm Manifest
+            ebuild *.ebuild clean digest
+          done
       - name: Configure use flags
         run: |
           emerge flaggie
