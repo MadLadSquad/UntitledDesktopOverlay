@@ -16,6 +16,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Synchronise repo and install essentials 
         run: |
+          emerge --sync
           emerge dev-vcs/git bash flaggie app-eselect/eselect-repository
       - name: Recreate git repo structure
         run: |
