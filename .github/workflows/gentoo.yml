@@ -15,7 +15,9 @@ jobs:
       - name: Sync and add overlay
         run: |
           emerge --sync
+          app-eselect/eselect-repository
           eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git
+          emerge --sync untitled-desktop-overlay
       - name: Configure use flags
         run: |
           emerge flaggie
