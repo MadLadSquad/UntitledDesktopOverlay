@@ -16,6 +16,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Recreate git repo structure
         run: |
+          emerge --sync
+          emerge git bash
+          
           git config --global user.name "Madman10K"
           git config --global user.email "contact@madladsquad.com"
           git init
