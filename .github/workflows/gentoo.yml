@@ -1,0 +1,20 @@
+name: Gentoo Desktop OpenRC AMD64
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gentoo-job:
+    runs-on: ubuntu-latest  # GitHub Actions host runner
+    container:
+      image: gentoo/stage3:desktop  # Pulls the Gentoo image from Docker Hub
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Display Gentoo environment info
+        run: |
+          cat /etc/os-release
+          uname -a
+    
