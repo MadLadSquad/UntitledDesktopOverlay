@@ -12,8 +12,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Display Gentoo environment info
+      - name: Sync and add overlay
         run: |
-          cat /etc/os-release
-          uname -a
+          emerge --sync
+          eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git
+      - name: Configure use flags
+        run: |
+          emerge flaggie
+      - name: Install applications
+        run: |
+          emerge untitled-ibus-handwriting untitled-game-system-manager ude-session-logout
+        
     
