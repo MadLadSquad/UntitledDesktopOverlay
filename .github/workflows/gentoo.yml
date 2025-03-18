@@ -16,15 +16,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Synchronise repo and install essentials 
         run: |
-          emerge --sync
           emerge dev-vcs/git bash flaggie app-eselect/eselect-repository
       - name: Recreate git repo structure
         run: |
           git config --global user.name "Madman10K"
           git config --global user.email "contact@madladsquad.com"
+          git config --global --add safe.directory "$(realpath .)"
           git init
+          git branch -m master
           git remote add origin https://github.com/MadLadSquad/UntitledDesktopOverlay
           git fetch --all
+          git pull origin master
+          git reset --hard origin/master
       - name: "Import bot's GPG key for signing commits"
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@v6
