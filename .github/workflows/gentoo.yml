@@ -21,6 +21,10 @@ jobs:
       - name: Configure use flags
         run: |
           emerge flaggie
+          flaggie raft +lz4
+          flaggie xdelta +lzma
+          flaggie squashfs-tools +lzma
+          flaggie libcap +static-libs
       - name: Install applications
         run: |
           emerge untitled-ibus-handwriting untitled-game-system-manager ude-session-logout || exit
