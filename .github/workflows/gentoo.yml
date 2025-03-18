@@ -27,7 +27,6 @@ jobs:
           git branch -m master
           git remote add origin https://github.com/MadLadSquad/UntitledDesktopOverlay
           git fetch --all
-          git pull origin master
           git reset --hard origin/master
       - name: "Import bot's GPG key for signing commits"
         id: import-gpg
