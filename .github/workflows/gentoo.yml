@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
 
+concurrency:
+  group: gentoo
+  cancel-in-progress: true
+
 jobs:
   gentoo-job:
     runs-on: ubuntu-latest  # GitHub Actions host runner
