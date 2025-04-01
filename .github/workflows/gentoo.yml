@@ -17,7 +17,7 @@ jobs:
       - name: Synchronise repo and install essentials 
         run: |
           emerge --sync
-          emerge dev-vcs/git bash flaggie app-eselect/eselect-repository
+          emerge dev-vcs/git flaggie app-eselect/eselect-repository openssh sudo
       - name: Recreate git repo structure
         run: |
           git config --global user.name "Madman10K"
@@ -41,11 +41,20 @@ jobs:
         run: |
           useradd -m builder
           chown -R builder $(pwd)
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo -E -u builder env HOME=/home/builder git config --global user.name Madman10K
+          sudo -E -u builder env HOME=/home/builder git config --global user.email contact@madladsquad.com
+          sudo -E -u builder env HOME=/home/builder git config --global init.defaultBranch main
           
-          su builder -c "git config --global user.name Madman10K"
-          su builder -c "git config --global user.email contact@madladsquad.com"
-          su builder -c "bash -c \"git config --global --add safe.directory $(realpath .)\""
-          git fetch --all
+          sudo -E -u builder mkdir -p /home/builder/.ssh
+          echo "${{ secrets.ACTIONS_GENTOO_SSH_KEY }}" | sudo -E -u builder tee /home/builder/.ssh/id_rsa > /dev/null
+          sudo -E -u builder chmod 600 /home/builder/.ssh/id_rsa
+          sudo -E -u builder ssh-keyscan -H aur.archlinux.org | sudo -E -u builder tee -a /home/builder/.ssh/known_hosts > /dev/null
+          
+          # Start a new SSH agent for builder
+          sudo -E -u builder sh -c 'eval $(ssh-agent -s) && ssh-add /home/builder/.ssh/id_rsa && ssh-add -l'
+          
+          sude -E -u builder git fetch --all
           old="$(pwd)"
           for manifest in $(find -iname "Manifest"); do
           	man="$(realpath "${manifest}")"
@@ -54,7 +63,8 @@ jobs:
             ebuild *.ebuild clean digest
           	cd "${old}"
           done
-          su builder -c "(git add . && git commit -m 'Update manifest' && git push origin HEAD:master) || echo 'Nothing to commit'"
+          chown -R builder $(pwd)
+          sudo -E -u builder sh -c "(git add . && git commit -m 'Update manifest' && git push origin HEAD:master) || echo 'Nothing to commit'"
       - name: Sync and add repo   
         run: |
           eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git || exit
