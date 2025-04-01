@@ -54,7 +54,7 @@ jobs:
           # Start a new SSH agent for builder
           sudo -E -u builder sh -c 'eval $(ssh-agent -s) && ssh-add /home/builder/.ssh/id_rsa && ssh-add -l'
           
-          sude -E -u builder git fetch --all
+          sudo -E -u builder git fetch --all
           old="$(pwd)"
           for manifest in $(find -iname "Manifest"); do
           	man="$(realpath "${manifest}")"
