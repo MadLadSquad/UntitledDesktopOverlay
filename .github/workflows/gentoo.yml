@@ -49,7 +49,7 @@ jobs:
           sudo -E -u builder mkdir -p /home/builder/.ssh
           echo "${{ secrets.ACTIONS_GENTOO_SSH_KEY }}" | sudo -E -u builder tee /home/builder/.ssh/id_rsa > /dev/null
           sudo -E -u builder chmod 600 /home/builder/.ssh/id_rsa
-          sudo -E -u builder ssh-keyscan -H aur.archlinux.org | sudo -E -u builder tee -a /home/builder/.ssh/known_hosts > /dev/null
+          sudo -E -u builder ssh-keyscan -H github.com | sudo -E -u builder tee -a /home/builder/.ssh/known_hosts > /dev/null
           
           # Start a new SSH agent for builder
           sudo -E -u builder sh -c 'eval $(ssh-agent -s) && ssh-add /home/builder/.ssh/id_rsa && ssh-add -l'
@@ -64,6 +64,7 @@ jobs:
           	cd "${old}"
           done
           chown -R builder $(pwd)
+          sudo -E -u builder git remote set-url origin git@github.com:MadLadSquad/UntitledDesktopOverlay
           sudo -E -u builder sh -c "(git add . && git commit -m 'Update manifest' && git push origin HEAD:master) || echo 'Nothing to commit'"
       - name: Sync and add repo   
         run: |
