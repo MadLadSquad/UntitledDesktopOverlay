@@ -39,8 +39,12 @@ jobs:
           git_commit_gpgsign: true
       - name: Update manifests
         run: |
-          git config --global user.name "Madman10K"
-          git config --global user.email "contact@madladsquad.com"
+          useradd -m builder
+          chown -R builder $(pwd)
+          
+          su builder -c "git config --global user.name Madman10K"
+          su builder -c "git config --global user.email contact@madladsquad.com"
+          su builder -c "bash -c \"git config --global --add safe.directory $(realpath .)\""
           git fetch --all
           old="$(pwd)"
           for manifest in $(find -iname "Manifest"); do
@@ -50,7 +54,7 @@ jobs:
             ebuild *.ebuild clean digest
           	cd "${old}"
           done
-          (git add . && git commit -m Update && git push origin HEAD:master) || echo "Nothing to commit"
+          su builder -c "(git add . && git commit -m 'Update manifest' && git push origin HEAD:master) || echo 'Nothing to commit'"
       - name: Sync and add repo   
         run: |
           eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git || exit
