@@ -39,7 +39,7 @@ jobs:
           git_commit_gpgsign: true
       - name: Update manifests
         run: |
-          useradd -m builder
+          useradd -m MAIL_DIR=/dev/null builder
           chown -R builder $(pwd)
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo -E -u builder env HOME=/home/builder git config --global user.name Madman10K
