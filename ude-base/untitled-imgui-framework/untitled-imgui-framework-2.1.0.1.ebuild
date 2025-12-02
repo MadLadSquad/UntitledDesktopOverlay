@@ -1,6 +1,6 @@
 # Distributed under the terms of the MIT License
 
-EAPI="7"
+EAPI="8"
 
 DESCRIPTION="Cross-platform desktop application framework based on the dear imgui library"
 HOMEPAGE="https://github.com/MadLadSquad/UntitledImGuiFramework"
