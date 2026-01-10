@@ -14,10 +14,9 @@ KEYWORDS="*"
 IUSE=""
 RESTRICT=""
 
-BDEPEND="virtual/pkgconfig
-	dev-cpp/yaml-cpp"
+BDEPEND="virtual/pkgconfig"
 DEPEND=""
-RDEPEND="dev-cpp/yaml-cpp"
+RDEPEND=""
 
 src_configure() {
 	sed -i "s/lib\/pkgconfig/lib64\/pkgconfig/g" "${S}"/CMakeLists.txt

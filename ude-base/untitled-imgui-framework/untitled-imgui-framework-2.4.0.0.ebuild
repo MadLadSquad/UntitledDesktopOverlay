@@ -13,7 +13,6 @@ IUSE=""
 RESTRICT=""
 
 BDEPEND="virtual/pkgconfig
-	dev-cpp/yaml-cpp
 	dev-libs/utfcpp
 	dev-util/vulkan-headers
 	media-libs/vulkan-layers
