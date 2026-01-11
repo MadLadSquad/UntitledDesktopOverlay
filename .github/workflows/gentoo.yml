@@ -37,36 +37,56 @@ jobs:
           useradd -K MAIL_DIR=/dev/null -m builder
           chown -R builder $(pwd)
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo -E -u builder env HOME=/home/builder git config --global user.name Madman10K
-          sudo -E -u builder env HOME=/home/builder git config --global user.email contact@madladsquad.com
-          sudo -E -u builder env HOME=/home/builder git config --global init.defaultBranch main
-          sudo -E -u builder env HOME=/home/builder git config --global commit.gpgsign true
-          sudo -E -u builder env HOME=/home/builder git config --global tag.gpgsign true
-          sudo -E -u builder env HOME=/home/builder git config --global gpg.format ssh
-          
-          sudo -E -u builder mkdir -p /home/builder/.ssh
-          echo "${{ secrets.ACTIONS_GENTOO_SSH_KEY }}" | sudo -E -u builder tee /home/builder/.ssh/id_rsa > /dev/null
-          sudo -E -u builder chmod 600 /home/builder/.ssh/id_rsa
-          
-          sudo -E -u builder env HOME=/home/builder git config --global user.signingkey /home/builder/.ssh/id_rsa
 
-          sudo -E -u builder ssh-keyscan -H github.com | sudo -E -u builder tee -a /home/builder/.ssh/known_hosts > /dev/null
+          # Helper alias to run commands as builder with the correct HOME
+          # We use this instead of sudo -E to prevent /github/home permission errors
+          cmd_builder="sudo -u builder env HOME=/home/builder"
+
+          $cmd_builder git config --global user.name Madman10K
+          $cmd_builder git config --global user.email contact@madladsquad.com
+          $cmd_builder git config --global init.defaultBranch main
+          $cmd_builder git config --global commit.gpgsign true
+          $cmd_builder git config --global tag.gpgsign true
+          $cmd_builder git config --global gpg.format ssh
           
-          # Start a new SSH agent for builder
-          sudo -E -u builder sh -c 'eval $(ssh-agent -s) && ssh-add /home/builder/.ssh/id_rsa && ssh-add -l'
+          $cmd_builder mkdir -p /home/builder/.ssh
+          echo "${{ secrets.ACTIONS_GENTOO_SSH_KEY }}" | $cmd_builder tee /home/builder/.ssh/id_rsa > /dev/null
+          $cmd_builder chmod 600 /home/builder/.ssh/id_rsa
           
-          sudo -E -u builder git fetch --all
+          $cmd_builder git config --global user.signingkey /home/builder/.ssh/id_rsa
+
+          # SSH-Keyscan: Explicit HOME ensures it looks in /home/builder/.ssh, not /github/home/.ssh
+          $cmd_builder ssh-keyscan -H github.com | $cmd_builder tee -a /home/builder/.ssh/known_hosts > /dev/null
+          
+          # --- FIXED SSH AGENT SETUP ---
+          # 1. Define a fixed socket path that both steps can access
+          SOCKET="/tmp/ssh_agent.sock"
+          
+          # 2. Start the agent in the background bound to this socket
+          $cmd_builder ssh-agent -a "$SOCKET" > /dev/null
+          
+          # 3. Add the key to the agent using the specific socket
+          $cmd_builder env SSH_AUTH_SOCK="$SOCKET" ssh-add /home/builder/.ssh/id_rsa
+          
+          $cmd_builder git fetch --all
           old="$(pwd)"
           for manifest in $(find -iname "Manifest"); do
-          	man="$(realpath "${manifest}")"
-          	cd "$(dirname "${man}")"
-          	rm Manifest
+            man="$(realpath "${manifest}")"
+            cd "$(dirname "${man}")"
+            rm Manifest
+            # This runs as root (standard for ebuild), which is fine
             ebuild *.ebuild clean digest
-          	cd "${old}"
+            cd "${old}"
           done
+          
+          # Reset ownership to builder so git can access the changed files
           chown -R builder $(pwd)
-          sudo -E -u builder git remote set-url origin git@github.com:MadLadSquad/UntitledDesktopOverlay
-          sudo -E -u builder sh -c "(git add . && git commit -m 'Update manifest' && git push origin HEAD:master) || echo 'Nothing to commit'"
+          
+          $cmd_builder git remote set-url origin git@github.com:MadLadSquad/UntitledDesktopOverlay
+          
+          # --- GIT PUSH WITH AGENT ---
+          # Pass the SOCKET variable so git can find the agent we started earlier
+          $cmd_builder env SSH_AUTH_SOCK="$SOCKET" sh -c "(git add . && git commit -m 'Update manifest' && git push origin HEAD:master) || echo 'Nothing to commit'"
       - name: Sync and add repo   
         run: |
           eselect repository add untitled-desktop-overlay git https://github.com/MadLadSquad/UntitledDesktopOverlay.git || exit
