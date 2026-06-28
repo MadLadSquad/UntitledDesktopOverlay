@@ -97,6 +97,7 @@ jobs:
           flaggie xdelta +lzma
           flaggie squashfs-tools +lzma
           flaggie libcap +static-libs
+          flaggie nftables +json
       - name: Install applications
         run: |
           emerge untitled-ibus-handwriting untitled-game-system-manager ude-session-logout || exit
